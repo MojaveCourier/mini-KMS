@@ -24,6 +24,19 @@ export type Keypack = {
   created_at: string;
 };
 
+export type DeviceWritePayload = {
+  serial: string;
+  name: string;
+  status: string;
+  last_seen_at: string | null;
+};
+
+export type KeypackWritePayload = {
+  device_id: number;
+  version: string;
+  status: string;
+};
+
 export type AuditLog = {
   id: number;
   user_id: number | null;

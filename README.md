@@ -107,12 +107,12 @@ SOURCE database/seed.sql;
 ```bash
 cd backend
 # PowerShell
-$env:DATABASE_URL="mysql://root:password@127.0.0.1:3306/mini_kms_admin"
+$env:DATABASE_URL="mysql://<user>:<password>@127.0.0.1:3306/mini_kms_admin"
 
 # bash
-# export DATABASE_URL="mysql://root:password@127.0.0.1:3306/mini_kms_admin"
+export DATABASE_URL="mysql://<user>:<password>@127.0.0.1:3306/mini_kms_admin"
 
-cargo run
+cargo run --bin mini-kms-admin-backend
 ```
 
 Runs on `http://127.0.0.1:3000`
