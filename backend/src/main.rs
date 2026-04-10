@@ -27,9 +27,24 @@ async fn main() {
         .route("/api/system/status", get(routes::system::get_status))
         .route("/api/users", get(routes::users::list_users).post(routes::users::create_user))
         .route("/api/users/{id}", patch(routes::users::update_user).delete(routes::users::delete_user))
-        .route("/api/devices", get(routes::devices::list_devices))
-        .route("/api/devices/{id}", get(routes::devices::get_device))
-        .route("/api/keypacks", get(routes::keypacks::list_keypacks))
+        .route(
+            "/api/devices",
+            get(routes::devices::list_devices).post(routes::devices::create_device),
+        )
+        .route(
+            "/api/devices/{id}",
+            get(routes::devices::get_device)
+                .patch(routes::devices::update_device)
+                .delete(routes::devices::delete_device),
+        )
+        .route(
+            "/api/keypacks",
+            get(routes::keypacks::list_keypacks).post(routes::keypacks::create_keypack),
+        )
+        .route(
+            "/api/keypacks/{id}",
+            patch(routes::keypacks::update_keypack).delete(routes::keypacks::delete_keypack),
+        )
         .route("/api/audit-logs", get(routes::audit_logs::list_audit_logs))
         .layer(from_fn_with_state(state.clone(), middleware::auth::auth_middleware));
 

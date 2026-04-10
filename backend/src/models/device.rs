@@ -1,5 +1,5 @@
 use chrono::{DateTime, Utc};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize)]
 pub struct DeviceRecord {
@@ -9,4 +9,22 @@ pub struct DeviceRecord {
     pub status: String,
     pub last_seen_at: Option<DateTime<Utc>>,
     pub created_at: DateTime<Utc>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct CreateDeviceRequest {
+    pub serial: String,
+    pub name: String,
+    pub status: String,
+    #[serde(default)]
+    pub last_seen_at: Option<DateTime<Utc>>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct UpdateDeviceRequest {
+    pub serial: String,
+    pub name: String,
+    pub status: String,
+    #[serde(default)]
+    pub last_seen_at: Option<DateTime<Utc>>,
 }
